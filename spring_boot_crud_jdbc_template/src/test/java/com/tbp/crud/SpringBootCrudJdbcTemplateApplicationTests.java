@@ -51,17 +51,24 @@ class SpringBootCrudJdbcTemplateApplicationTests {
 			when(repository.saveUser(user)).thenReturn(user);
 			assertEquals(user, controller.addUser(user));
 		}
-//		@Test
-//		public void getUserByIdTest() {
-//			User user = new User(444, "Kavya", "Amritha", 23, "kavyaAmritha@gmail.com");
-//			when(repository.getById(anyInt())).thenReturn(user);
-//			assertEquals(user, controller.getUser(anyInt()));
-//		}
+		@Test
+		public void getUserByIdTest() {
+			User user = new User(444, "Kavya", "Amritha", 23, "kavyaAmritha@gmail.com");
+			when(repository.getById(anyInt())).thenReturn(user);
+			assertEquals(user, controller.getUser(anyInt()));
+		}
 
 		@Test
 	public void deleteUserTest(){
 			User user = new User(444, "Kavya", "Amritha", 23, "kavyaAmritha@gmail.com");
 			controller.deleteUser(anyInt());
 			verify(repository,times(1)).deleteById(anyInt());
+		}
+
+		@Test
+		public void updateUserTest(){
+			User user = new User(444, "Kavya", "Amritha", 23, "kavyaAmritha@gmail.com");
+			when(repository.updateUser(user)).thenReturn(user);
+			assertEquals(user,controller.updateUser(user));
 		}
 	}
